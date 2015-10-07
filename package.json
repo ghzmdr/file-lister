@@ -1,0 +1,29 @@
+{
+  "name": "file-lister",
+  "version": "1.0.0",
+  "description": "File lister for node",
+  "main": "file-lister.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghzmdr/file-lister.git"
+  },
+  "keywords": [
+    "npm",
+    "node",
+    "file",
+    "list",
+    "assets"
+  ],
+  "author": "Vincent De Feo (ghzmdr)",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/ghzmdr/file-lister/issues"
+  },
+  "homepage": "https://github.com/ghzmdr/file-lister#readme",
+  "dependencies": {
+    "walk": "^2.3.9"
+  }
+}
