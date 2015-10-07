@@ -1,8 +1,8 @@
 {
-  "name": "file-lister",
+  "name": "path-lister",
   "version": "1.0.0",
   "description": "File lister for node",
-  "main": "file-lister.js",
+  "main": "path-lister.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
