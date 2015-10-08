@@ -22,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/ghzmdr/file-lister/issues"
   },
-  "homepage": "https://github.com/ghzmdr/file-lister#readme",
-  "dependencies": {
-    "walk": "^2.3.9"
-  }
+  "homepage": "https://github.com/ghzmdr/file-lister#readme"
 }

@@ -1,24 +1,41 @@
 var fs = require('fs')
-var walk = require('walk')
 
-module.exports = function (root, destRoot, destFile, callback) {
-    if (!destRoot)
-        destRoot = root
+
+function listRecursive(path, list, avoid) {
+    var files = fs.readdirSync(path)
+
+    for (var fi = 0; fi < files.length; ++fi) { 
+        if (avoid && files[fi].match(avoid))
+            continue
+
+        var relPath = path +'/'+ files[fi]
+        var stat = fs.statSync(relPath)
+
+        stat.isDirectory() ?
+            listRecursive(relPath, list, avoid) :
+            list.push(relPath)
+    }
+}
+
+function stripPath(path, filename) {
+    if (filename.indexOf(path) < 0)
+        return filename
+
+    return filename.substring(path.length, filename.length)
+}
+
+module.exports = function (root, destRoot, destFile, avoid, callback) {
 
     var fileList = []
-
-    walk.walkSync(root, {listeners:{
-
-        file: function (r, stat, next) {
-            fileList.push(destRoot + '/' + stat.name)
-            next()
-        }}
-
-    })
+    listRecursive(root, fileList, avoid)
 
     var fileListString = "module.exports = ["
 
     fileList.forEach(function (filename) {
+
+        var stripped = stripPath(root, filename)
+        filename = destRoot + stripped
+
         fileListString += '\n\t"' + filename + '",'
     })
 
@@ -27,3 +44,4 @@ module.exports = function (root, destRoot, destFile, callback) {
 
     if (callback) callback(fileList, fileListString)
 }
+
